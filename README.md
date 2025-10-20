@@ -5,6 +5,13 @@ O projeto tem como objetivo gerenciar produtos, permitindo cadastrar, editar, li
 
 ---
 
+## 🎓 Sobre este projeto
+
+Este projeto é **um estudo pessoal desenvolvido pela Alura**, criado para praticar os conceitos aprendidos no curso **“Testes Instrumentados em Android”** da **Alura**.  
+Todo o código e estrutura seguem os exercícios e boas práticas do curso, com adaptações e melhorias próprias.
+
+---
+
 ## 🚀 Tecnologias e Ferramentas
 
 - **Linguagem:** Kotlin
