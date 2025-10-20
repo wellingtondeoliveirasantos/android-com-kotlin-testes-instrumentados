@@ -47,7 +47,7 @@ O projeto tem como objetivo gerenciar produtos, permitindo cadastrar, editar, li
 ### 🔹 Clonar o projeto
 
 ```bash
-git clone https://github.com/seu-usuario/android-kotlin-testes.git
+git clone git@github.com:wellingtondeoliveirasantos/android-com-kotlin-testes-instrumentados.git
 cd android-kotlin-testes
 ```
 
