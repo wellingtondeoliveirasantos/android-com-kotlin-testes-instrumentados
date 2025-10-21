@@ -7,7 +7,6 @@ plugins {
 
 android {
     namespace "br.com.alura.orgs"
-
     compileSdk 35
 
     defaultConfig {
@@ -26,10 +25,24 @@ android {
         }
     }
 
+    buildFeatures {
+        buildConfig = true  // ✅ necessário para gerar BuildConfig
+        viewBinding = true
+    }
+
+    testBuildType = 'uiTest'
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "DATABASE_NAME", "\"orgs.db\""
+        }
+
+        // 👇 Cria o buildType uiTest corretamente
+        create("uiTest") {
+            initWith(getByName("debug"))
+            buildConfigField "String", "DATABASE_NAME", "\"orgs_teste.db\""
         }
     }
 
@@ -41,14 +54,9 @@ android {
     kotlinOptions {
         jvmTarget = "21"
     }
-
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
-    // 🔹 Versões atualizadas (estáveis até outubro de 2025)
     def room_version = "2.6.1"
     def lifecycle_version = "2.8.6"
     def coroutines_version = "1.9.0"

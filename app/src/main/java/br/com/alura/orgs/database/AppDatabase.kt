@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import br.com.alura.orgs.R
 import br.com.alura.orgs.database.converter.Converters
 import br.com.alura.orgs.database.dao.ProdutoDao
 import br.com.alura.orgs.database.dao.UsuarioDao
 import br.com.alura.orgs.model.Produto
 import br.com.alura.orgs.model.Usuario
-
 
 @Database(
     entities = [
@@ -29,14 +29,21 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var db: AppDatabase? = null
+
         fun instancia(context: Context): AppDatabase {
-            return db ?: Room.databaseBuilder(
-                context,
-                AppDatabase::class.java,
-                "orgs.db"
-            ).build().also {
-                db = it
+            return db ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    getDatabaseName(context) // ✅ usa o nome configurado por ambiente
+                ).build()
+                db = instance
+                instance
             }
+        }
+
+        private fun getDatabaseName(context: Context): String {
+            return context.getString(R.string.database_name)
         }
     }
 }
